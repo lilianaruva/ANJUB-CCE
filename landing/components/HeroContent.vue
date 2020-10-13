@@ -23,14 +23,32 @@
       </div>
       <!--Right Col-->
       <div class="w-full md:w-3/5 py-6 text-center">
-        <img class="w-full md:w-4/5 z-50" src="~/assets/img/hero.png" alt />
+        <lottie  :options="lottieOptions" v-on:animCreated="handleAnimation" />
+       <!--  <img class="w-full md:w-4/5 z-50" src="~/assets/img/hero.png" alt />  -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import lottie from 'vue-lottie/src/lottie.vue'
+import * as animationData from "~/assets/negocios.json";
+
 export default {
+  components: {
+    lottie,
+  },
+  data() {
+    return {
+      anim: null, // for saving the reference to the animation
+      lottieOptions: { animationData: animationData.default }
+    }
+  },
+  methods: {
+     handleAnimation: function (anim) {
+      this.anim = anim;
+    }
+  },
   name: 'HeroContent'
 }
 </script>
